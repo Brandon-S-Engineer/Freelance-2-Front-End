@@ -8,6 +8,7 @@ import ProductCard from '@/components/ui/product-card';
 import NoResults from '@/components/ui/no-results';
 
 import Filter from './components/filter';
+import MobileFilters from './components/mobile-filters';
 
 export const revalidate = 0;
 
@@ -38,8 +39,13 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params, searchParams 
         <Billboard data={category.billboard} />
 
         <div className='px-4 sm:px-6 lg:px-8 pb-24'>
+          {/* There are no filters now in less than large screens, fix it if tutorial does not */}
           <div className='lg:grid lg:grid-cols-5 lg:gap-x-8'>
-            {/* Add Mobile Filters */}
+            <MobileFilters
+              sizes={sizes}
+              colors={colors}
+            />
+
             <div className='hidden lg:block'>
               <Filter
                 valueKey='sizeId'
@@ -53,7 +59,7 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params, searchParams 
                 data={colors}
               />
 
-              {/* We Could add more Filters in here and load them based on the category and product */}
+              {/* Improve Filters in Mobile view */}
             </div>
 
             <div className='mt-6 lg:col-span-4 lg:mt-0'>
