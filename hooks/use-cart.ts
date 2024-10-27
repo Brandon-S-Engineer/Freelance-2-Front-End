@@ -6,9 +6,9 @@ import { Product } from '@/types';
 
 interface CartStore {
   items: Product[]; // Array to store cart items
-  addItem: (data: Product) => void; // Function to add an item to the cart
-  removeItem: (id: string) => void; // Function to remove an item from the cart
-  removeAll: () => void; // Function to clear the cart
+  addItem: (data: Product) => void; // Func to add an item to the cart
+  removeItem: (id: string) => void; // Func to remove an item from the cart
+  removeAll: () => void; // Func to clear the cart
 }
 
 //? Zustand Store for Cart State Management
