@@ -7,3 +7,9 @@ body,
 :root {
   height: 100%;
 }
+
+.text-outline {
+  color: white; /* Text color */
+
+  text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.8), 1px -1px 2px rgba(0, 0, 0, 0.8), -1px 1px 2px rgba(0, 0, 0, 0.8), 1px 1px 2px rgba(0, 0, 0, 0.8);
+}

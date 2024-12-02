@@ -53,7 +53,7 @@ const Summary = () => {
 
       <Button
         onClick={onCheckout}
-        className='w-full mt-6'>
+        className='w-full mt-6 text-white'>
         Checkout
       </Button>
     </div>

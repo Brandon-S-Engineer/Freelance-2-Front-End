@@ -49,8 +49,8 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
       { skipNull: true } // Skip parameters with null values.
     );
 
-    // 4e. `router.push(url)` navigates to the updated URL.
-    router.push(url);
+    // 4e. navigates to the updated URL without scrolling up.
+    router.replace(url, { scroll: false });
   };
 
   return (
