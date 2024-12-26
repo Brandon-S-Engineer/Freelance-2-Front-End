@@ -4,8 +4,17 @@ import '@testing-library/jest-dom';
 import ProductList from './product-list';
 import { Product } from '@/types';
 
-jest.mock('@/components/ui/no-results', () => () => <div data-testid='no-results'>No Results Found</div>);
-jest.mock('@/components/ui/product-card', () => ({ data }: { data: Product }) => <div data-testid='product-card'>{data.name}</div>);
+jest.mock('./ui/no-results', () => {
+  const NoResults = () => <div data-testid='no-results'>No Results Found</div>;
+  NoResults.displayName = 'NoResults';
+  return NoResults;
+});
+
+jest.mock('./ui/product-card', () => {
+  const ProductCard = ({ data }: { data: Product }) => <div data-testid='product-card'>{data.name}</div>;
+  ProductCard.displayName = 'ProductCard';
+  return ProductCard;
+});
 
 describe('ProductList Component', () => {
   it('renders the title', () => {
