@@ -29,6 +29,7 @@ const NavbarActions = () => {
         <ShoppingBag
           size={20}
           color='white'
+          data-testid='shopping-bag-icon' // Add this line
         />
 
         <span className='ml-2 font-medium text-white'>{cart.items.length}</span>
