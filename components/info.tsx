@@ -48,6 +48,7 @@ const Info: React.FC<InfoProps> = ({ data }) => {
           <div
             className='h-6 w-6 rounded-full border border-gray-600'
             style={{ backgroundColor: data?.color?.value }}
+            data-testid='color-swatch'
           />
         </div>
       </div>
