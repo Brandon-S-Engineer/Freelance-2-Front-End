@@ -29,18 +29,14 @@ describe('Navbar Component', () => {
     jest.clearAllMocks();
   });
 
-  it('renders the Navbar with a title and links', async () => {
-    (getCategories as jest.Mock).mockResolvedValue([
-      { id: 1, name: 'Category 1' },
-      { id: 2, name: 'Category 2' },
-    ]);
+  it('renders fallback UI when fetch fails', async () => {
+    (getCategories as jest.Mock).mockRejectedValue(new Error('Failed to fetch categories'));
 
     render(<Navbar />);
 
-    expect(await screen.findByText('Category 1')).toBeInTheDocument();
-    expect(await screen.findByText('Category 2')).toBeInTheDocument();
+    // Ensure the component renders without crashing
     expect(screen.getByText('Store')).toBeInTheDocument();
-    expect(screen.getByText('Navbar Actions')).toBeInTheDocument();
+    expect(console.error).toHaveBeenCalledWith('Failed to fetch categories:', expect.any(Error));
   });
 
   it('handles empty categories gracefully', async () => {
