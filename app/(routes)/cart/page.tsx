@@ -1,11 +1,13 @@
 'use client';
 
+import { Suspense } from 'react';
 import Container from '@/components/ui/container';
 import useCart from '@/hooks/use-cart';
+
 import CarItem from './components/cart-item';
 import Summary from './components/summary';
 
-const CartPage = () => {
+const CartPageContent = () => {
   const cart = useCart();
 
   return (
@@ -25,13 +27,22 @@ const CartPage = () => {
                 ))}
               </ul>
             </div>
-            <Summary />
+
+            <Suspense fallback={<div>Loading summary...</div>}>
+              <Summary />
+            </Suspense>
           </div>
         </div>
       </Container>
     </div>
   );
 };
+
+const CartPage = () => (
+  <Suspense fallback={<div>Loading cart...</div>}>
+    <CartPageContent />
+  </Suspense>
+);
 
 export default CartPage;
 
