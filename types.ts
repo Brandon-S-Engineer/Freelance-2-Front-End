@@ -25,6 +25,7 @@ export interface Product {
   };
   name: string;
   price: number;
+  promoPrice: number;
   isFeatured: boolean;
   size: Size;
   color: Color;
