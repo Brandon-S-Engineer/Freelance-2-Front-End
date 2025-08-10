@@ -124,3 +124,4 @@ Explore the store, browse products by categories, view individual product pages,
 - **Email**: [brandon.s.engineer@gmail.com](mailto:brandon.s.engineer@gmail.com)
 - **LinkedIn**: [Brandon I. Soria](https://www.linkedin.com/in/brandon-i-soria/)
 - **Portfolio**: [Link to Portfolio](https://www.brandon-s-engineer.com/)
+# Freelance-1-Front-End
