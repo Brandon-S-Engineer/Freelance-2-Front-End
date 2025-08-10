@@ -6,6 +6,9 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { Category } from '@/types';
 
+// Extend Category to include optional MongoDB _id
+type NavCategory = Category & { _id?: string };
+
 interface MainNavProps {
   data: Category[];
 }
@@ -13,11 +16,14 @@ interface MainNavProps {
 const MainNav: React.FC<MainNavProps> = ({ data }) => {
   const pathname = usePathname();
 
-  const routes = data.map((route) => ({
-    href: `/category/${route.id}`,
-    label: route.name,
-    active: pathname === `/category/${route.id}`,
-  }));
+  const routes = (data as NavCategory[]).map((route) => {
+    const catId = route._id ?? route.id;
+    return {
+      href: `/category/${catId}`,
+      label: route.name,
+      active: pathname === `/category/${catId}`,
+    };
+  });
 
   return (
     <nav className='mx-6 flex items-center space-x-4 lg:space-x-6'>

@@ -11,14 +11,25 @@ export interface Category {
 }
 
 export interface Product {
+  variants: {
+    _id: string;
+    name: string;
+    price: number;
+    promoPrice: number | null;
+  }[];
   id: string;
   category: Category;
+  categoryId: {
+    _id: string;
+    name: string;
+  };
   name: string;
-  price: string;
+  price: number;
   isFeatured: boolean;
   size: Size;
   color: Color;
   images: Image[];
+  specPdfUrl?: string;
 }
 
 export interface Image {

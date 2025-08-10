@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Store',
+  title: 'Catálogo Edith Soria',
   description: 'Store',
 };
 

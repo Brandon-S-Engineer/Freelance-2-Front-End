@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
 });
 
 interface CurrencyProps {
@@ -22,7 +24,7 @@ const Currency: React.FC<CurrencyProps> = ({ value }) => {
     return null;
   }
 
-  return <div className='font-semibold'>{formatter.format(Number(value))}</div>;
+  return <span className='font-semibold'>{formatter.format(Number(value)).replace('$', '$ ')}</span>;
 };
 
 export default Currency;

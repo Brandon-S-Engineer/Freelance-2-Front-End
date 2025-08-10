@@ -1,39 +1,19 @@
 'use client';
 
 import Image from 'next/image';
-import { Expand, ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { MouseEventHandler } from 'react';
-
 import { Product } from '@/types';
-import IconButton from '@/components/ui/icon-button';
 import Currency from '@/components/ui/currency';
-import usePreviewModal from '@/hooks/use-preview-modal';
-import useCart from '@/hooks/use-cart';
 
 interface ProductCard {
   data: Product;
 }
 
 const ProductCard: React.FC<ProductCard> = ({ data }) => {
-  const cart = useCart();
-  const previewModal = usePreviewModal();
   const router = useRouter();
 
   const handleClick = () => {
     router.push(`/product/${data?.id}`);
-  };
-
-  const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation();
-
-    previewModal.onOpen(data);
-  };
-
-  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
-    event.stopPropagation();
-
-    cart.addItem(data);
   };
 
   return (
@@ -41,29 +21,14 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
       onClick={handleClick}
       className='bg-white group cursor-pointer rounded-xl border p-3 space-y-4'>
       {/* Images and Icons */}
-      <div className='aspect-square rounded-xl bg-gray-100 relative'>
+      <div className='rounded-xl bg-gray-100 relative'>
         <Image
-          src={data?.images?.[0]?.url}
-          fill
+          src={data?.images && data.images.length > 0 ? (typeof data.images[0] === 'string' ? data.images[0] : data.images[0].url) : 'https://via.placeholder.com/300'}
           alt='Image'
-          className='aspect-square object-cover rounded-md'
+          width={400}
+          height={250}
+          className='w-full h-auto object-contain rounded-md'
         />
-
-        <div className='opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5'>
-          <div className='flex gap-x-6 justify-center'>
-            <IconButton
-              onClick={onPreview}
-              icon={<Expand size={20} />}
-              className='text-gray-600'
-            />
-
-            <IconButton
-              onClick={onAddToCart}
-              icon={<ShoppingCart size={20} />}
-              className='text-gray-600'
-            />
-          </div>
-        </div>
       </div>
 
       {/* Description */}
@@ -74,9 +39,29 @@ const ProductCard: React.FC<ProductCard> = ({ data }) => {
       </div>
 
       {/* Price */}
-      <div className='flex items-center justify-between'>
-        <Currency value={data?.price} />
+
+      <div className='flex items-center space-x-2'>
+        {data?.promoPrice != null && data.promoPrice < data.price ? (
+          <>
+            <span className='text-gray-500 line-through'>
+              <Currency value={data.price} />
+            </span>
+            <span className='text-red-600 font-semibold'>
+              <Currency value={data.promoPrice} />
+            </span>
+          </>
+        ) : (
+          <>
+            <span className='text-gray-600 mr-1'>desde</span>
+            <Currency value={data.price} />
+          </>
+        )}
       </div>
+
+      {/* <div className='flex items-center '>
+        <span className='text-gray-600 mr-1'>desde</span>
+        <Currency value={data?.price} />
+      </div> */}
     </div>
   );
 };
