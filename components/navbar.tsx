@@ -19,18 +19,40 @@ const Navbar = async () => {
 
   // const categories = await getCategories();
 
+  // return (
+  //   <div className='border-b'>
+  //     <Container>
+  //       <div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center'>
+  //         <Link
+  //           href='/'
+  //           className='ml-4 flex lg:ml-0 gap-x-2'>
+  //           <p className='font-bold text-xl'>Promociones</p>
+  //         </Link>
+
+  //         <MainNav data={categories} />
+
+  //         <NavbarActions />
+  //       </div>
+  //     </Container>
+  //   </div>
+  // );
+
   return (
     <div className='border-b'>
       <Container>
-        <div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center'>
+        <div className='relative px-4 sm:px-6 lg:px-8 flex h-16 items-center gap-3'>
           <Link
             href='/'
-            className='ml-4 flex lg:ml-0 gap-x-2'>
-            <p className='font-bold text-xl'>Promociones</p>
+            className='flex-shrink-0 lg:ml-0'>
+            <p className='font-bold text-2xl xl:text-xl'>Promociones</p>
           </Link>
 
-          <MainNav data={categories} />
+          {/* Middle lane: categories */}
+          <div className='mx-2 flex-1 min-w-0 overflow-x-auto whitespace-nowrap'>
+            <MainNav data={categories} />
+          </div>
 
+          {/* Right lane: actions */}
           <NavbarActions />
         </div>
       </Container>
