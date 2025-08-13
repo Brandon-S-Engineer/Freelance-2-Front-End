@@ -20,7 +20,7 @@ export default function MainNav({ data, className }: MainNavProps) {
   const pathname = usePathname();
 
   return (
-    <nav className={cn('mx-6 flex flex-wrap justify-center items-center gap-x-4 lg:gap-x-6 gap-y-2 max-[562px]:gap-y-4 lg:gap-y-3', className)}>
+    <nav className={cn('mx-6 flex flex-wrap justify-center items-center gap-x-4 lg:gap-x-6 gap-y-2 max-[728px]:gap-y-4 lg:gap-y-3', className)}>
       {data.map((c) => {
         const id = c.id ?? c._id; // ✅ fallback for Mongo
         if (!id) return null; // ✅ skip invalid to avoid /undefined
