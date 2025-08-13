@@ -3,47 +3,43 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { Fragment } from 'react'; // ✅ add this
+import { Fragment } from 'react';
 
 interface Category {
-  id: string;
+  id?: string;
+  _id?: string;
   name: string;
-  // ...whatever else you use
 }
 
 interface MainNavProps {
   data: Category[];
-  className?: string; // keep if you already support className
+  className?: string;
 }
 
-export function MainNav({ data, className }: MainNavProps) {
+export default function MainNav({ data, className }: MainNavProps) {
   const pathname = usePathname();
 
-  const routes = data.map((c) => ({
-    href: `/category/${c.id}`,
-    label: c.name,
-    active: pathname === `/category/${c.id}`,
-  }));
-
   return (
-    <nav
-      className={cn(
-        // ✅ center + wrap + vertical spacing (what you asked for)
-        'mx-6 flex flex-wrap justify-center items-center gap-x-4 lg:gap-x-6 gap-y-2 lg:gap-y-3',
-        className
-      )}>
-      {routes.map((route) => (
-        <Fragment key={route.href}>
-          {/* ✅ break to second row starting at "Mitsubishi" on <=562px */}
-          {route.label === 'Mitsubishi' && <div className='w-full max-[562px]:block hidden' />}
+    <nav className={cn('mx-6 flex flex-wrap justify-center items-center gap-x-4 lg:gap-x-6 gap-y-2 lg:gap-y-3', className)}>
+      {data.map((c) => {
+        const id = c.id ?? c._id; // ✅ fallback for Mongo
+        if (!id) return null; // ✅ skip invalid to avoid /undefined
+        const href = `/category/${id}`;
+        const active = pathname === href;
 
-          <Link
-            href={route.href}
-            className={cn('text-sm font-medium transition-colors hover:text-black', route.active ? 'text-black' : 'text-neutral-500')}>
-            {route.label}
-          </Link>
-        </Fragment>
-      ))}
+        return (
+          <Fragment key={id}>
+            {/* force new row starting at "Mitsubishi" on ≤562px */}
+            {c.name === 'Mitsubishi' && <div className='w-full max-[562px]:block hidden' />}
+
+            <Link
+              href={href}
+              className={cn('text-sm font-medium transition-colors hover:text-black', active ? 'text-black' : 'text-neutral-500')}>
+              {c.name}
+            </Link>
+          </Fragment>
+        );
+      })}
     </nav>
   );
 }
@@ -92,4 +88,4 @@ export function MainNav({ data, className }: MainNavProps) {
 //   );
 // };
 
-export default MainNav;
+// export default MainNav;
