@@ -1,8 +1,3 @@
-// Layout rules:
-// xl+  : original single row (untouched)
-// lg   : single row, compact sizes so it fits (your 1085px case)
-// <lg  : stacked (title + WA, then categories centered)
-
 import Link from 'next/link';
 import Container from '@/components/ui/container';
 import MainNav from '@/components/main-nav';
@@ -51,6 +46,7 @@ const Navbar = async () => {
         </div>
 
         {/* === Laptop (lg: 1024–1279): still one row, compact so everything fits === */}
+        {/* === Laptop (lg: 1024–1279): still one row, compact so everything fits === */}
         <div className='hidden min-[1193px]:flex xl:hidden h-16 items-center px-4 gap-3'>
           {/* Smaller title on lg so it doesn’t push content */}
           <Link
@@ -62,10 +58,8 @@ const Navbar = async () => {
           {/* Tighter categories in the middle (smaller text + gaps) */}
           <div className='flex-1 flex justify-center min-w-0'>
             <div className='text-sm'>
-              <MainNav
-                data={categories}
-                compact
-              />
+              {/* ❗️Important: NO `compact` prop here */}
+              <MainNav data={categories} />
             </div>
           </div>
 
