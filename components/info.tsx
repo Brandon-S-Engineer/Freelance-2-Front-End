@@ -24,24 +24,24 @@ const Info: React.FC<InfoProps> = ({ data }) => {
 
   return (
     <div>
-      <h1 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-8'>{data.name}</h1>
+      <h1 className='text-2xl lg:text-4xl max-[760px]:text-xl font-bold mb-8'>{data.name}</h1>
 
       <div className='mt-3 flex flex-col gap-y-4'>
         {/* Precio base como los variants, en negrita y alineado */}
         <div className='flex justify-between items-center mb-5'>
-          <p className='text-xl lg:text-2xl font-bold'>Precio base:</p>
+          <p className='text-xl lg:text-2xl max-[760px]:text-lg font-bold'>Precio base:</p>
 
           {data.promoPrice != null && data.promoPrice < data.price ? (
             <div className='flex items-center gap-x-3'>
-              <span className='text-xl lg:text-2xl font-bold line-through text-gray-500'>
+              <span className='text-xl lg:text-2xl max-[760px]:text-lg font-bold line-through text-gray-500'>
                 <Currency value={data.price} />
               </span>
-              <span className='text-xl lg:text-2xl font-bold text-red-600'>
+              <span className='text-xl lg:text-2xl max-[760px]:text-lg font-bold text-red-600'>
                 <Currency value={data.promoPrice} />
               </span>
             </div>
           ) : (
-            <p className='text-xl lg:text-2xl font-bold'>
+            <p className='text-xl lg:text-2xl max-[760px]:text-lg font-bold'>
               <Currency value={data.price} />
             </p>
           )}
@@ -53,19 +53,19 @@ const Info: React.FC<InfoProps> = ({ data }) => {
         {data.variants?.map((variant) => (
           <React.Fragment key={variant._id}>
             <div className='flex justify-between items-center'>
-              <p className='text-xl lg:text-2xl font-bold'>{variant.name}:</p>
+              <p className='text-xl lg:text-2xl max-[760px]:text-lg font-bold'>{variant.name}:</p>
 
               {variant.promoPrice != null && variant.promoPrice < variant.price ? (
                 <div className='flex items-center gap-x-3'>
-                  <span className='text-xl lg:text-2xl font-bold line-through text-gray-500'>
+                  <span className='text-xl lg:text-2xl max-[760px]:text-lg font-bold line-through text-gray-500'>
                     <Currency value={variant.price} />
                   </span>
-                  <span className='text-xl lg:text-2xl font-bold text-red-600'>
+                  <span className='text-xl lg:text-2xl max-[760px]:text-lg font-bold text-red-600'>
                     <Currency value={variant.promoPrice} />
                   </span>
                 </div>
               ) : (
-                <p className='text-xl lg:text-2xl font-bold'>
+                <p className='text-xl lg:text-2xl max-[760px]:text-lg font-bold'>
                   <Currency value={variant.price} />
                 </p>
               )}
