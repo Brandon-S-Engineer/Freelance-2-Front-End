@@ -23,7 +23,7 @@ const HomePage = async () => {
       <div className=''>
         <Billboard data={billboard} />
 
-        <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8 mb-10 max-[1192px]:text-center'>
+        <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8 mb-10'>
           <ProductList
             title={titulo}
             items={products}
