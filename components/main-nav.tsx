@@ -26,14 +26,17 @@ const MainNav: React.FC<MainNavProps> = ({ data }) => {
   });
 
   return (
-    <nav className='mx-6 flex items-center space-x-4 lg:space-x-6'>
+    <nav className='mx-6 flex flex-wrap justify-center items-center gap-x-4 lg:gap-x-6 gap-y-4 lg:gap-y-3'>
       {routes.map((route) => (
-        <Link
-          key={route.href}
-          href={route.href}
-          className={cn('text-sm font-medium transition-colors hover:text-black', route.active ? 'text-black' : 'text-neutral-500')}>
-          {route.label}
-        </Link>
+        <>
+          {route.label === 'Category-here' && <div className='w-full max-[562px]:block hidden'></div>}
+          <Link
+            key={route.href}
+            href={route.href}
+            className={cn('text-sm font-medium transition-colors hover:text-black', route.active ? 'text-black' : 'text-neutral-500')}>
+            {route.label}
+          </Link>
+        </>
       ))}
     </nav>
   );
