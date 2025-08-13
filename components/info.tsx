@@ -26,52 +26,56 @@ const Info: React.FC<InfoProps> = ({ data }) => {
     <div>
       <h1 className='max-[760px]:text-xl max-[1023px]:text-2xl text-3xl font-bold mb-8'>{data.name}</h1>
 
-      <div className='mt-3 flex flex-col gap-y-4 max-w-[800px] mx-auto'>
+      <div className='mt-2 flex flex-col gap-y-4 max-w-[800px] mx-auto'>
         {/* Precio base como los variants, en negrita y alineado */}
-        <div className='flex justify-between items-center mb-5'>
+        <div className='flex flex-col items-start mb-3'>
           <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>Precio base:</p>
 
-          {data.promoPrice != null && data.promoPrice < data.price ? (
-            <div className='flex items-center gap-x-3'>
-              <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold line-through text-gray-500'>
+          <div className='flex gap-x-3'>
+            {data.promoPrice != null && data.promoPrice < data.price ? (
+              <>
+                <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold line-through text-gray-500'>
+                  <Currency value={data.price} />
+                </span>
+                <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold text-red-600'>
+                  <Currency value={data.promoPrice} />
+                </span>
+              </>
+            ) : (
+              <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>
                 <Currency value={data.price} />
-              </span>
-              <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold text-red-600'>
-                <Currency value={data.promoPrice} />
-              </span>
-            </div>
-          ) : (
-            <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>
-              <Currency value={data.price} />
-            </p>
-          )}
+              </p>
+            )}
+          </div>
         </div>
 
-        <hr className='border-gray-700' />
+        <hr className='border-gray-700 mb-2' />
 
         {/* Variantes */}
         {data.variants?.map((variant) => (
           <React.Fragment key={variant._id}>
-            <div className='flex justify-between items-center'>
+            <div className='flex flex-col items-start'>
               <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>{variant.name}:</p>
 
-              {variant.promoPrice != null && variant.promoPrice < variant.price ? (
-                <div className='flex items-center gap-x-3'>
-                  <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold line-through text-gray-500'>
+              <div className='flex gap-x-3'>
+                {variant.promoPrice != null && variant.promoPrice < variant.price ? (
+                  <>
+                    <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold line-through text-gray-500'>
+                      <Currency value={variant.price} />
+                    </span>
+                    <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold text-red-600'>
+                      <Currency value={variant.promoPrice} />
+                    </span>
+                  </>
+                ) : (
+                  <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>
                     <Currency value={variant.price} />
-                  </span>
-                  <span className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold text-red-600'>
-                    <Currency value={variant.promoPrice} />
-                  </span>
-                </div>
-              ) : (
-                <p className='text-xl max-[600px]:text-sm max-[1278px]:text-lg font-bold'>
-                  <Currency value={variant.price} />
-                </p>
-              )}
+                  </p>
+                )}
+              </div>
             </div>
 
-            <hr className='my-4 border-gray-700' />
+            <hr className='my-2 border-gray-700' />
           </React.Fragment>
         ))}
       </div>
