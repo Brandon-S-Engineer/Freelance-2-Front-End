@@ -5,6 +5,8 @@ import Container from '@/components/ui/container';
 import Gallery from '@/components/gallery';
 import Info from '@/components/info';
 
+import TrackRecent from '@/components/TrackRecent';
+
 interface ProductPageProps {
   params: {
     productId: string;
@@ -18,10 +20,22 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
     return <div className='p-10'>Product not found</div>;
   }
 
+  const primaryImage = Array.isArray(product.images) ? (typeof product.images[0] === 'string' ? product.images[0] : product.images[0]?.url ?? '') : '';
+
   const suggestedProducts = product?.categoryId?._id ? await getProducts({ categoryId: product.categoryId._id }) : [];
 
   return (
     <div className='bg-white'>
+      <TrackRecent
+        product={{
+          id: product.id,
+          title: product.name,
+          price: product.price,
+          imageUrl: primaryImage,
+          href: `/product/${product.id}`,
+        }}
+      />
+
       <Container>
         <div className='px-4 py-10 sm:px-6 lg:px-8'>
           <div className='lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8'>
@@ -36,7 +50,7 @@ const ProductPage: React.FC<ProductPageProps> = async ({ params }) => {
 
           {/* Aqui descripcion del auto */}
           <ProductList
-            title='Autos relacionados'
+            title='Artículos relacionados'
             items={suggestedProducts}
           />
         </div>

@@ -5,7 +5,7 @@ import qs from 'query-string'; // Library for handling URL query strings.
 import { useRouter, useSearchParams } from 'next/navigation'; // Next.js hooks for navigation and search params.
 
 import { Color, Size } from '@/types';
-import Button from '@/components/ui/button';
+import CustomButton from '@/components/ui/custom-button';
 import { cn } from '@/lib/utils';
 
 interface FilterProps {
@@ -64,11 +64,11 @@ const Filter: React.FC<FilterProps> = ({ data, name, valueKey }) => {
           <div
             key={filter.id}
             className='flex items-center'>
-            <Button
+            <CustomButton
               className={cn('rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300', selectedValue === filter.id && 'bg-black text-white')}
               onClick={() => onClick(filter.id)}>
               {filter.name}
-            </Button>
+            </CustomButton>
           </div>
         ))}
       </div>

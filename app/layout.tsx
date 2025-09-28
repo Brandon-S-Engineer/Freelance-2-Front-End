@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Catálogo Edith Soria',
+  title: 'PrimeFinds.com.mx: Equipos Certificados',
   description: 'Store',
 };
 
@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-200`}>
         <ModalProvider />
 
         <ToastProvider />

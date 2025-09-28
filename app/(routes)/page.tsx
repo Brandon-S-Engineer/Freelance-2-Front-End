@@ -1,33 +1,49 @@
 import getBillboard from '@/actions/get-billboard';
 import Container from '@/components/ui/container';
-import Billboard from '@/components/billboard';
-import getProducts from '@/actions/get-products';
-import ProductList from '@/components/product-list';
+
+import HomeBillboardCarousel from '@/components/home-billboard-carousel';
+import FeatureStrip from '@/components/feature-strip';
+
+import RecentlyViewed from '@/components/recently-viewed';
+import PaymentMethodsStrip from '@/components/ui/paymentMethodStrip';
+import TopDeals3 from '@/components/top-deals';
+
+import PromotionsBoard from '@/components/promotions-board';
 
 export const revalidate = 0;
 
-const getMesActualEnEspañol = () => {
-  const mes = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(new Date());
-  return mes.charAt(0).toUpperCase() + mes.slice(1);
+type BillboardType = {
+  id: string;
+  label: string;
+  imageUrl: string;
+  // add other fields your <Billboard /> component requires
 };
 
 const HomePage = async () => {
-  const products = await getProducts({ isFeatured: true });
-  const rawBillboard = await getBillboard('');
-  const billboard = Array.isArray(rawBillboard) ? rawBillboard[0] : rawBillboard;
-
-  const titulo = `Promociones ${getMesActualEnEspañol()}`;
+  // Ensure we have an array of billboards
+  const raw = await getBillboard(''); // your current call
+  const billboards = Array.isArray(raw) ? raw : raw ? [raw] : [];
 
   return (
     <Container>
       <div className=''>
-        <Billboard data={billboard} />
+        <HomeBillboardCarousel items={billboards as BillboardType[]} />
 
-        <div className='flex flex-col gap-y-8 px-4 sm:px-6 lg:px-8 mb-10'>
-          <ProductList
-            title={titulo}
-            items={products}
-          />
+        {/* Trust/benefits strip */}
+        <div className='px-5 mt-1 mb-8'>
+          <FeatureStrip />
+        </div>
+        <div className='px-5 my-8'>
+          <RecentlyViewed />
+        </div>
+        <div className='px-5 mt-10 mb-10'>
+          <TopDeals3 />
+        </div>
+        <div className='flex flex-col gap-y-8 px-5 mb-10'>
+          <PromotionsBoard />
+        </div>
+        <div className='px-5 mt-1 mb-10'>
+          <PaymentMethodsStrip />
         </div>
       </div>
     </Container>

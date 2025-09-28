@@ -1,51 +1,36 @@
-# Store Web Application
+# Electronics Catalog Front-End
 
-**Developed a dynamic eCommerce store** to provide users with a seamless online shopping experience.  
-**Built using Next.js, TypeScript, and Tailwind CSS**, the project integrates **Prisma**, **PlanetScale (MySQL)**, and **Stripe** for efficient back-end functionality and secure payment processing.
+**Developed a modern front-end for an electronics catalog** providing a premium browsing experience. Built with **Next.js, TypeScript, and Tailwind CSS**, this project focuses on performance, responsive design, and intuitive navigation.
 
 ---
 
 ## 🌐 Live Demo
 
-**[Store Demo](#)**  
-Explore the store, browse products by categories, view individual product pages, and securely complete purchases.
+**[Electronics Catalog Demo](#)**  
+Explore the electronics catalog, browse by categories, and view detailed product information with a smooth and engaging interface.
 
 ---
 
 ## 🚀 Features
 
-**Designed and implemented a user-centric eCommerce store**, including:
+**Designed a user-friendly electronics catalog front-end**, including:
 
-- **Featured Products**: Displays curated products on the homepage for immediate user engagement.
-- **Category Pages**: Organized product categories for easy navigation and discovery.
-- **Product Pages**: Detailed individual product pages with high-quality previews.
-- **Product Preview Modal**: Allows quick product viewing without leaving the current page.
-- **Add to Cart**: Implements a dynamic cart system with real-time updates.
-- **Secure Checkout**: Integrated **Stripe** for seamless and secure payment processing.
+- **Featured Electronics**: Highlights premium electronics on the homepage.
+- **Category Navigation**: Organized categories for laptops, phones, tablets, and accessories.
+- **Product Detail Pages**: Rich descriptions and high-quality images for each electronic item.
+- **Quick Preview Modal**: View products instantly without page reloads.
+- **Responsive Cart UI**: Manage selections with a dynamic cart component (front-end only).
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Built with modern tools and frameworks to deliver a scalable and efficient store**:
+**Built with modern tools and frameworks to deliver a scalable and efficient front-end**:
 
 - **Framework**: Next.js
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Database**: PlanetScale (MySQL)
-- **ORM**: Prisma
-- **Payment Integration**: Stripe
-- **Testing**: Jest
-
----
-
-## 🧪 Testing
-
-**Developed and executed 24 Jest test cases** to validate the store's reliability and performance, focusing on:
-
-- Accurate rendering of product details and category pages.
-- Functionality of the cart and product preview modal.
-- User interface responsiveness and navigation.
+- **State Management**: React hooks and context
 
 ---
 
@@ -64,33 +49,22 @@ Explore the store, browse products by categories, view individual product pages,
 │   ├── globals.css
 │   └── layout.tsx
 ├── components/
-│   ├── __snapshots__/
 │   ├── gallery/
 │   └── ui/
-│       ├── billboard.test.tsx
 │       ├── billboard.tsx
-│       ├── footer.test.tsx
 │       ├── footer.tsx
-│       ├── info.test.tsx
 │       ├── info.tsx
-│       ├── main-nav.test.tsx
 │       ├── main-nav.tsx
-│       ├── navbar-actions.test.tsx
 │       ├── navbar-actions.tsx
-│       ├── navbar.test.tsx
 │       ├── navbar.tsx
-│       ├── preview-modal.test.tsx
 │       ├── preview-modal.tsx
-│       ├── product-list.test.tsx
 │       └── product-list.tsx
-├── coverage/
 ├── hooks/
 ├── lib/
 ├── node_modules/
 ├── providers/
 ├── .env
 ├── .eslintrc.json
-├── .gitignore
 ├── jest.config.cjs
 ├── next-env.d.ts
 ├── next.config.mjs
@@ -108,12 +82,11 @@ Explore the store, browse products by categories, view individual product pages,
 
 ## ✨ Highlights
 
-**Showcased advanced eCommerce functionality through these features**:
+**Showcased advanced front-end functionality through these features**:
 
-- **Dynamic Shopping Experience**: Implemented real-time product previews, a dynamic cart system, and personalized product pages.
-- **Secure Payment Processing**: Integrated Stripe for safe and user-friendly checkout.
-- **Efficient Organization**: Organized products by categories and featured items for user convenience.
-- **Comprehensive Testing**: Validated the reliability and functionality of core features with 24 tests.
+- **Premium Electronics Experience**: Real-time previews and category browsing.
+- **Responsive Design**: Optimized for desktop and mobile.
+- **Front-End Focused**: Built for integration with any backend API.
 
 ---
 
@@ -124,4 +97,3 @@ Explore the store, browse products by categories, view individual product pages,
 - **Email**: [brandon.s.engineer@gmail.com](mailto:brandon.s.engineer@gmail.com)
 - **LinkedIn**: [Brandon I. Soria](https://www.linkedin.com/in/brandon-i-soria/)
 - **Portfolio**: [Link to Portfolio](https://www.brandon-s-engineer.com/)
-# Freelance-1-Front-End

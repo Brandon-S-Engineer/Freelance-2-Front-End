@@ -2,7 +2,6 @@
 
 import { Product } from '@/types';
 import Currency from '@/components/ui/currency';
-import { FaWhatsapp } from 'react-icons/fa';
 
 import React from 'react';
 
@@ -16,11 +15,6 @@ const Info: React.FC<InfoProps> = ({ data }) => {
   // console.log('Data - Variants:', data);
 
   // helper para armar el link
-  const buildWhatsAppLink = (productName: string) => {
-    const base = 'https://wa.me/5215581631195';
-    const text = `Hola, quiero informes sobre: ${productName}`;
-    return `${base}?text=${encodeURIComponent(text)}`;
-  };
 
   return (
     <div>
@@ -82,22 +76,6 @@ const Info: React.FC<InfoProps> = ({ data }) => {
 
       {/* contenedor centrado */}
       <div className='mt-10 flex flex-wrap justify-center items-center gap-x-3 gap-y-2'>
-        {/* WhatsApp informes */}
-        <a
-          href={buildWhatsAppLink(data.name)}
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label='Contactar por WhatsApp para informes'
-          className='inline-flex items-center justify-center gap-x-2 rounded-full bg-green-600 px-6 py-2 text-lg font-semibold text-white transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-700'>
-          {/* icono un poco más grande para claridad sin exagerar */}
-          <FaWhatsapp
-            aria-hidden='true'
-            className='flex-shrink-0'
-            size={22}
-          />
-          Apártalo / Informes
-        </a>
-
         {/* ficha técnica */}
         {data.specPdfUrl && (
           <Link

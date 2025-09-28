@@ -1,8 +1,8 @@
-// import getCategory from '@/actions/get-category';
+import getCategory from '@/actions/get-category';
 // import getColors from '@/actions/get-colors';
 import getProducts from '@/actions/get-products';
 // import getSizes from '@/actions/get-sizes';
-// import Billboard from '@/components/billboard';
+import Billboard from '@/components/billboard';
 import Container from '@/components/ui/container';
 import ProductCard from '@/components/ui/product-card';
 import NoResults from '@/components/ui/no-results';
@@ -31,12 +31,12 @@ const CategoryPage: React.FC<CategoryPageProps> = async ({ params, searchParams 
 
   // const sizes = await getSizes();
   // const colors = await getColors();
-  // const category = await getCategory(params.categoryId);
+  const category = await getCategory(params.categoryId);
 
   return (
     <div className='bg-white'>
       <Container>
-        {/* <Billboard data={category.billboard} /> */}
+        <Billboard data={category.billboard} />
 
         <div className='px-4 sm:px-6 lg:px-8 pb-24'>
           {/* There are no filters now in less than large screens, fix it if tutorial does not */}

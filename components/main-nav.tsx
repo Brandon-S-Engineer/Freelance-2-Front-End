@@ -31,7 +31,7 @@ export default function MainNav({ data, className }: MainNavProps) {
           <Fragment key={id}>
             <Link
               href={href}
-              className={cn('text-sm font-medium transition-colors hover:text-black', active ? 'text-black' : 'text-neutral-500')}>
+              className={cn('text-sm font-medium transition-colors hover:underline', active ? 'text-sky-200' : 'text-white')}>
               {c.name}
             </Link>
           </Fragment>
