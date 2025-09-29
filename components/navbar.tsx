@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import lion from '@/public/lion.png';
 import Container from '@/components/ui/container';
 import MainNav from '@/components/main-nav';
 import getCategories from '@/actions/get-categories';
 import NavbarActions from '@/components/navbar-actions';
 import { Category } from '@/types';
-import { GiOpenTreasureChest } from 'react-icons/gi';
 
 import DepartmentsMenu from './departments-menu';
 
@@ -33,13 +34,17 @@ const Navbar = async () => {
           <Link
             href='/'
             className='flex-shrink-0 justify-center'>
-            <p className='font-bold text-xl inline-flex items-center gap-1 relative top-[2px]'>
-              <GiOpenTreasureChest
-                size={32}
-                className='text-cyan-600'
+            <p className='font-bold text-xl inline-flex items-center relative top-[2px]'>
+              <Image
+                src={lion}
+                alt=''
+                width={54}
+                height={54}
                 aria-hidden='true'
+                className='inline-block'
+                priority
               />
-              PrimeFinds
+              Omaleon
             </p>
           </Link>
 
@@ -93,12 +98,16 @@ const Navbar = async () => {
             href='/'
             className='flex-shrink-0'>
             <p className='font-bold text-lg inline-flex items-center gap-1 relative top-[2px]'>
-              <GiOpenTreasureChest
-                size={30}
-                className='text-cyan-600'
+              <Image
+                src={lion}
+                alt=''
+                width={48}
+                height={48}
                 aria-hidden='true'
+                className='inline-block'
+                priority
               />
-              PrimeFinds
+              Omaleon
             </p>
           </Link>
 
@@ -163,13 +172,17 @@ const Navbar = async () => {
                 href='/'
                 className='flex-shrink-0'>
                 <p className='w-full font-bold text-2xl max-[1040px]:mr-6 max-[1040px]:pb-1 max-[1192px]:mr-6 max-[1192px]:pb-1 text-center inline-flex items-center gap-1 justify-center relative top-[0px]'>
-                  <GiOpenTreasureChest
-                    size={27}
-                    className='text-cyan-600'
+                  <Image
+                    src={lion}
+                    alt=''
+                    width={40}
+                    height={40}
                     aria-hidden='true'
+                    className='inline-block'
+                    priority
                   />
-                  <span className='hidden max-[483px]:inline'>PrimeFinds {getMesActualEnEspañol()}</span>
-                  <span className='inline max-[483px]:hidden'>PrimeFinds</span>
+                  <span className='hidden max-[483px]:inline'>Omaleon {getMesActualEnEspañol()}</span>
+                  <span className='inline max-[483px]:hidden'>Omaleon</span>
                 </p>
               </Link>
               <NavbarActions />

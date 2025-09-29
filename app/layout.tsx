@@ -20,7 +20,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'PrimeFinds.com.mx: Equipos Certificados',
+  title: 'Omaleon.com: Equipos Certificados',
   description: 'Store',
 };
 

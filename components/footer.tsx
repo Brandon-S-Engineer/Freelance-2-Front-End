@@ -8,7 +8,7 @@ const groups: { title: string; links: { label: string; href: string }[] }[] = [
   {
     title: 'Empresa',
     links: [
-      { label: 'Sobre PrimeFinds', href: '/about' },
+      { label: 'Sobre Omaleon', href: '/about' },
       { label: 'Tienda y Sucursales', href: '/sucursales' },
       { label: 'Programa de Afiliados', href: '/afiliados' },
       { label: 'Blog y Guías de Compra', href: '/blog' },
