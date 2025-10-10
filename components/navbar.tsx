@@ -9,12 +9,6 @@ import { Category } from '@/types';
 
 import DepartmentsMenu from './departments-menu';
 
-// Helper to get current month in Spanish, capitalized
-const getMesActualEnEspañol = () => {
-  const mes = new Intl.DateTimeFormat('es-ES', { month: 'long' }).format(new Date());
-  return mes.charAt(0).toUpperCase() + mes.slice(1);
-};
-
 export const revalidate = 0;
 
 const Navbar = async () => {
@@ -181,7 +175,7 @@ const Navbar = async () => {
                     className='inline-block'
                     priority
                   />
-                  <span className='hidden max-[483px]:inline'>Omaleon {getMesActualEnEspañol()}</span>
+                  <span className='hidden max-[483px]:inline'>Omaleon</span>
                   <span className='inline max-[483px]:hidden'>Omaleon</span>
                 </p>
               </Link>
