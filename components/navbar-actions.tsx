@@ -2,17 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { FiUser, FiPackage, FiShoppingCart } from 'react-icons/fi';
-import LoginModal from './login-modal';
-import SignUpModal from './signup-modal';
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const NavbarActions = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-
-  useEffect(() => {
-    console.log('NavbarActions mounted');
-  }, []);
 
   useEffect(() => setIsMounted(true), []);
   if (!isMounted) return <div style={{ height: 40 }} />;
@@ -20,18 +15,39 @@ const NavbarActions = () => {
   return (
     <>
       <div className='ml-auto flex items-center gap-x-6 max-[483px]:justify-center max-[483px]:ml-0 max-[483px]:w-full'>
-        <button
-          onClick={() => setIsLoginOpen(true)}
-          className='text-sm font-medium hover:text-blue-600 flex items-center gap-x-1'>
-          <FiUser size={16} />
-          Iniciar sesión
-        </button>
+        {/* Login Button and Dialog */}
+        <Dialog>
+          <DialogTrigger asChild>
+            <button
+              type='button'
+              className='text-sm font-medium hover:text-blue-600 flex items-center gap-x-1'>
+              <FiUser size={16} />
+              Iniciar sesión
+            </button>
+          </DialogTrigger>
 
-        <button
-          onClick={() => setIsSignUpOpen(true)}
-          className='text-sm font-medium hover:text-blue-600 flex items-center gap-x-1'>
-          Crear cuenta
-        </button>
+          <DialogContent className='sm:max-w-[400px]'>
+            <DialogHeader>
+              <DialogTitle>Iniciar sesión</DialogTitle>
+            </DialogHeader>
+
+            <form className='flex flex-col gap-4 mt-4'>
+              <Input
+                type='email'
+                placeholder='Correo electrónico'
+              />
+              <Input
+                type='password'
+                placeholder='Contraseña'
+              />
+              <Button
+                type='submit'
+                className='w-full bg-blue-600 hover:bg-blue-700'>
+                Entrar
+              </Button>
+            </form>
+          </DialogContent>
+        </Dialog>
 
         <a
           href='/orders'
@@ -51,16 +67,6 @@ const NavbarActions = () => {
           </span>
         </a>
       </div>
-
-      <LoginModal
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-      />
-
-      <SignUpModal
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
-      />
     </>
   );
 };
