@@ -17,12 +17,12 @@ const Summary = () => {
 
   useEffect(() => {
     if (searchParams.get('success')) {
-      toast.success('Payment completed'); //? Appears Twice
+      toast.success('Pago completado'); //? Appears Twice
       removeAll();
     }
 
     if (searchParams.get('canceled')) {
-      toast.error('Something went wrong');
+      toast.error('Algo salió mal');
     }
   }, [searchParams, removeAll]);
 
@@ -40,11 +40,11 @@ const Summary = () => {
 
   return (
     <div className='mt-16 rounded-gl bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8'>
-      <h2 className='text-lg font-medium text-gray-900'>Order Summary</h2>
+      <h2 className='text-lg font-medium text-gray-900'>Resumen de Pedido</h2>
 
       <div className='mt-6 space-y-4'>
         <div className='flex items-center justify-between border-t border-gray-200 pt-4'>
-          <div className='text-base font-medium text-gray-900'>Order total</div>
+          <div className='text-base font-medium text-gray-900'>Total</div>
 
           {/* Replace value */}
           <Currency value={totalPrice} />
@@ -55,7 +55,7 @@ const Summary = () => {
         disabled={items.length === 0}
         onClick={onCheckout}
         className='w-full mt-6 text-white'>
-        Checkout
+        Pagar
       </CustomButton>
     </div>
   );

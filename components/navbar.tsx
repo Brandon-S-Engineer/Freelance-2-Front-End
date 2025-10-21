@@ -23,7 +23,7 @@ const Navbar = async () => {
     <div className='border-b'>
       <Container>
         {/* === Desktop (xl): keep your original row exactly === */}
-        <div className='hidden xl:flex h-16 pt-4 items-center px-4'>
+        <div className='hidden xl:flex h-16 pt-4 items-center mx-auto w-full max-w-[90rem] px-5'>
           {/* Left: title */}
           <Link
             href='/'
@@ -87,7 +87,7 @@ const Navbar = async () => {
         </div>
 
         {/* === Laptop (lg: 1024–1279): still one row, compact so everything fits === */}
-        <div className='hidden min-[1193px]:flex xl:hidden h-16 items-center px-4 gap-3'>
+        <div className='hidden min-[1193px]:flex xl:hidden h-16 items-center gap-3 w-[90%] mx-auto'>
           <Link
             href='/'
             className='flex-shrink-0'>
