@@ -1,6 +1,17 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+declare global {
+  interface Window {
+    FB: {
+      init: (config: { appId: string; cookie: boolean; xfbml: boolean; version: string }) => void;
+      XFBML: {
+        parse: () => void;
+      };
+    };
+    fbAsyncInit: () => void;
+  }
+}
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 
@@ -16,6 +27,25 @@ export default function SignUpPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const initFacebook = () => {
+      if (window.FB) {
+        window.FB.init({
+          appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID!,
+          cookie: true,
+          xfbml: true,
+          version: 'v20.0',
+        });
+        window.FB.XFBML.parse();
+      }
+    };
+
+    if (window.FB) initFacebook();
+    else {
+      window.fbAsyncInit = initFacebook;
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,7 +120,7 @@ export default function SignUpPage() {
             <Input
               id='password'
               type='password'
-              placeholder='••••••••'
+              placeholder='•••••'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -108,7 +138,7 @@ export default function SignUpPage() {
 
       <div className='flex items-center gap-2 my-4'>
         <Separator className='flex-1' />
-        <span className='text-xs text-muted-foreground'>o registrarse con</span>
+        <span className='text-xs text-muted-foreground'>o</span>
         <Separator className='flex-1' />
       </div>
 

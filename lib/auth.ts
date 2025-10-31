@@ -1,10 +1,12 @@
-export async function signUp(email: string, password: string) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
-  });
+// utils/auth.ts
+export const API_BASE = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:3000';
 
-  if (!res.ok) throw new Error('Signup failed');
-  return res.json();
+export function startLogin(provider?: 'Google' | 'Facebook') {
+  const url = provider ? `${API_BASE}/api/auth/login?provider=${provider}` : `${API_BASE}/api/auth/login`;
+  window.location.href = url;
+}
+
+export function startSignup(provider?: 'Google' | 'Facebook') {
+  const url = provider ? `${API_BASE}/api/auth/signup?provider=${provider}` : `${API_BASE}/api/auth/signup`;
+  window.location.href = url;
 }

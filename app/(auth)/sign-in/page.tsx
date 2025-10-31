@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Script from 'next/script';
 
@@ -9,30 +9,45 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 
+import { startLogin } from '@/lib/auth';
+
+declare global {
+  interface Window {
+    FB: {
+      init: (config: { appId: string; cookie: boolean; xfbml: boolean; version: string }) => void;
+      XFBML: {
+        parse: () => void;
+      };
+    };
+    fbAsyncInit: () => void;
+  }
+}
+
 import { FiMail, FiLock } from 'react-icons/fi';
 
 export default function SignInPage() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  useEffect(() => {
+    const initFacebook = () => {
+      if (window.FB) {
+        window.FB.init({
+          appId: process.env.NEXT_PUBLIC_FACEBOOK_APP_ID!,
+          cookie: true,
+          xfbml: true,
+          version: 'v20.0',
+        });
+        window.FB.XFBML.parse();
+      }
+    };
 
-    try {
-      // TODO: Integrate with Cognito Auth endpoint (Next.js → Node.js → Cognito)
-      console.log('Logging in:', { email, password });
-
-      // Example redirect after successful login
-      router.push('/');
-    } catch (error) {
-      console.error('Error logging in:', error);
-    } finally {
-      setLoading(false);
+    if (window.FB) initFacebook();
+    else {
+      window.fbAsyncInit = initFacebook;
     }
-  };
+  }, []);
 
   return (
     <div className='space-y-6 max-w-md mx-auto py-12'>
@@ -41,7 +56,7 @@ export default function SignInPage() {
         strategy='afterInteractive'>{`
     window.fbAsyncInit = function() {
       FB.init({
-        appId  : '${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}',
+        appId  : '${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID!}',
         cookie : true,
         xfbml  : true,
         version: 'v20.0'
@@ -59,9 +74,7 @@ export default function SignInPage() {
         <p className='text-sm text-muted-foreground mt-1'>Accede a tu cuenta Omaleon</p>
       </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className='space-y-4'>
+      <form className='space-y-4'>
         <div className='space-y-2'>
           <Label htmlFor='email'>Correo electrónico</Label>
           <div className='flex items-center gap-2'>
@@ -90,7 +103,7 @@ export default function SignInPage() {
             <Input
               id='password'
               type='password'
-              placeholder='••••••••'
+              placeholder='•••••'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -99,10 +112,10 @@ export default function SignInPage() {
         </div>
 
         <Button
-          type='submit'
+          type='button'
           className='w-full'
-          disabled={loading}>
-          {loading ? 'Entrando...' : 'Iniciar sesión'}
+          onClick={() => startLogin()}>
+          Iniciar sesión
         </Button>
       </form>
 
@@ -116,7 +129,8 @@ export default function SignInPage() {
       <div className='flex flex-col items-center gap-4'>
         <button
           className='gsi-material-button'
-          style={{ width: 236 }}>
+          style={{ width: 236 }}
+          onClick={() => startLogin('Google')}>
           <div className='gsi-material-button-state'></div>
           <div className='gsi-material-button-content-wrapper'>
             <div className='gsi-material-button-icon'>
@@ -149,14 +163,16 @@ export default function SignInPage() {
         </button>
 
         {/* Official Facebook Login Button (SDK Plugin) */}
-        <div
-          className='fb-login-button'
-          data-size='large'
-          data-layout='default'
-          data-button-type='continue_with'
-          data-auto-logout-link='false'
-          data-use-continue-as='false'
-          data-width=''></div>
+        <div onClick={() => startLogin('Facebook')}>
+          <div
+            className='fb-login-button'
+            data-size='large'
+            data-layout='default'
+            data-button-type='continue_with'
+            data-auto-logout-link='false'
+            data-use-continue-as='false'
+            data-width=''></div>
+        </div>
       </div>
 
       <p className='text-center text-sm text-muted-foreground mt-4'>

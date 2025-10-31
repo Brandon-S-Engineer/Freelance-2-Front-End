@@ -9,11 +9,6 @@ export const metadata: Metadata = {
   },
   // Auth pages generally shouldn't be indexed (search engines)
   robots: { index: false, follow: false },
-  // Nice to keep the toolbar consistent on auth too
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#e5e7eb' }, // gray-200
-    { media: '(prefers-color-scheme: dark)', color: '#111827' }, // gray-900
-  ],
 };
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {

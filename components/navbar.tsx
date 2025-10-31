@@ -153,7 +153,6 @@ const Navbar = async () => {
             <nav className='flex justify-start'>
               <DepartmentsMenu />
               <MainNav data={categories} />
-              {/* Here */}
             </nav>
           </div>
         </div>
